@@ -36,6 +36,12 @@ jobs:
             exit 1
           fi
 
+      - name: Configure Datadog Test Optimization
+        uses: datadog/test-visibility-github-action@v2
+        with:
+          languages: go
+          api_key: ${{secrets.DD_API_KEY}}
+
       - name: Test
         run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
 
